@@ -42,7 +42,7 @@ export class TaskService {
   complete(taskId: string): Observable<void> {
     const task = this.tasks.find((t) => t.id === taskId);
     if (task) {
-      task.completed = true;
+      Object.assign(task, { completed: true });
       return of(undefined);
     } else {
       return throwError(() => new Error('Task not found'));
