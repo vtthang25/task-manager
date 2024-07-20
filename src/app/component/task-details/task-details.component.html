@@ -1,0 +1,7 @@
+<div *ngIf="task$ | async as task">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p><strong>Assigned To:</strong> {{ task.assignedTo }}</p>
+    <p><strong>Completed:</strong> {{ task.completed ? 'Yes' : 'No' }}</p>
+  </div>
+  

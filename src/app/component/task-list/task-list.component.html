@@ -1,0 +1,40 @@
+<div>
+  <input nz-input [(ngModel)]="filter" placeholder="Filter tasks" />
+  <button nz-button nzType="primary" (click)="filterTasks()">Filter</button>
+</div>
+
+<nz-table [nzData]="task" nzBordered>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Assigned To</th>
+      <th>Completed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks$ | async">
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td>{{ task.assignedTo }}</td>
+      <td>{{ task.completed }}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="completeTask(task.id)">
+          Complete
+        </button>
+        <input nz-input [(ngModel)]="task.assignedTo" placeholder="Assign to" />
+        <button
+          nz-button
+          nzType="default"
+          (click)="assignTask(task.id, task.assignedTo)"
+        >
+          Assign
+        </button>
+        <button nz-button nzType="link" (click)="viewTaskDetails(task.id)">
+          View Details
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
